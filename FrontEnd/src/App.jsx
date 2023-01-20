@@ -1,24 +1,14 @@
 import { useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
+import SignUpPage from './pages/signUpPage'
 
 function App() {
     return (
         <>
-            <div className="App">
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to='/home'>Home</Link>
-                        </li>
-                        <li>
-                            <Link to='/contact'>Contact</Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
             <Routes>
-                <Route path='/home' />
-                <Route path='/contact' />
+                <Route path='/signIn' />
+                <Route path='/signUp' element={<SignUpPage />} />
+                <Route path='/action' />
             </Routes>
         </>
 
