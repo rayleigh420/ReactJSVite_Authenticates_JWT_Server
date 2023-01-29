@@ -1,10 +1,18 @@
 import axios from "axios";
 
-let signUp = async (data) => {
+export const signUp = async (data) => {
+  console.log("API: ", data);
   try {
-    let result = Qaxios.post("https://vc02vv-3000.preview.csb.app/", data);
-    console.log(result);
-  } catch (e) {}
+    let result = await axios.post(
+      "https://vc02vv-3000.preview.csb.app/signUp",
+      data
+    );
+    console.log("Result: ", result);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-export default signUp
+// module.exports = {
+//   signUp,
+// };

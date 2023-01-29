@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 
-import userAPI from "../api/userAPI";
+import { signUp } from "../api/userAPI";
 
 const SignUpPage = () => {
   const onFinish = (values) => {
     console.log(values);
-    userAPI.signUp(values);
+    signUp(values);
     // try {
     // } catch (e) {
     //   console.log(e);
