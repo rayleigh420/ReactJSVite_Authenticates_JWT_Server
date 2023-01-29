@@ -9,20 +9,11 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 8080;
 
-mongoose.connect(process.env.MONGOOSE_URL, () => {
-  console.log("Connect Mongoose Databse success!");
-});
-
-app.use(cors());
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://vc02vv-5173.preview.csb.app/"
+    "https://vc02vv-5173.preview.csb.app"
   );
 
   // Request methods you wish to allow
@@ -44,6 +35,15 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+mongoose.connect(process.env.MONGOOSE_URL, () => {
+  console.log("Connect Mongoose Databse success!");
+});
+
+// app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 initRoutes(app);
 
