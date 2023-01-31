@@ -3,7 +3,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { useContext } from "react";
-import AuthContext from "../context/AuthProvide";
+import AuthContext from "../context/AuthProvider";
 
 
 const Login = () => {

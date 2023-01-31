@@ -1,26 +1,38 @@
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import Register from "./pages/Register"
-import SignUpPage from "./pages/SignUpPage";
+import { Routes, Route, Link, Outlet } from "react-router-dom";
 import axios from "axios";
-import Login from "./pages/Login";
+
+import Register from "./components/Register"
+import Login from "./components/Login";
+import Home from './components/Home';
+import Layout from './components/Layout';
+import Editor from './components/Editor';
+import Admin from './components/Admin';
+import Missing from './components/Missing';
+import Unauthorized from './components/Unauthorized';
+import Lounge from './components/Lounge';
+import LinkPage from './components/LinkPage';
+import RequireAuth from './components/RequireAuth';
 
 function App() {
   return (
-    <>
-      <main className="App">
-        {/* <Register /> */}
-        <Login />
-      </main>
-      {/* <Routes>
-        <Route path="/signIn" />
-        <Route path="/signUp" element={<SignUpPage />} />
-        <Route path="/action" />
-      </Routes> */}
-      {/* <h2>hello</h2> */}
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />} >
+        {/* Public Route */}
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="linkpage" element={<LinkPage />} />
+        <Route path="login" element={<Login />} />
 
-    // <h2>HEllo</h2>
+        {/* Private Route */}
+        <Route path="/" element={<Home />} />
+        <Route path="editor" element={<Editor />} />
+        <Route path="admin" element={<Admin />} />
+        <Route path="lounge" element={<Lounge />} />
+
+        <Route path="*" element={<Missing />} />
+      </Route>
+    </Routes>
   );
 }
 
