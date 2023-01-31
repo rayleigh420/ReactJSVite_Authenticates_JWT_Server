@@ -2,9 +2,13 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
+import { useContext } from "react";
+import AuthContext from "../context/AuthProvide";
 
 
 const Login = () => {
+    const { setAuth } = useContext(AuthContext)
+
     const [email, setEmail] = useState('')
     const [pwd, setPwd] = useState('');
 
@@ -20,6 +24,12 @@ const Login = () => {
                 }
             );
             console.log(response.data);
+            setAuth({
+                userName: response.data.userName,
+                email: response.data.email,
+                admin: response.data.admin,
+                accessToken: response.data.accessToken
+            })
             //clear state and controlled inputs
             //need value attrib on inputs for this
             setEmail('');
@@ -42,7 +52,7 @@ const Login = () => {
                 </section>
             ) : (
                 <section>
-                    <h1>Register</h1>
+                    <h1>Log In</h1>
                     <form onSubmit={handleSubmit}>
 
                         <label htmlFor="confirm_pwd">
@@ -69,13 +79,13 @@ const Login = () => {
                             required
                         />
 
-                        <button>Sign Up</button>
+                        <button>Sign In</button>
                     </form>
                     <p>
-                        Already registered?<br />
+                        Need an Account?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Sign In</a>
+                            <a href="#">Sign Up</a>
                         </span>
                     </p>
                 </section>
