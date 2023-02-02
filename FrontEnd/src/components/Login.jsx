@@ -4,15 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
 import { useContext } from "react";
 import AuthContext from "../context/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext)
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+
     const [email, setEmail] = useState('')
     const [pwd, setPwd] = useState('');
-
-    const [success, setSuccess] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,63 +37,54 @@ const Login = () => {
             //need value attrib on inputs for this
             setEmail('');
             setPwd('');
-            setSuccess(true);
+            // setSuccess(true);
+
+            navigate(from, { replace: true })
         } catch (err) {
             // console.log(err)
         }
     }
 
     return (
-        <>
-            {success ? (
-                <section>
-                    <h1>You are logged in!</h1>
-                    <br />
-                    <p>
-                        <a href="#">Go to Home</a>
-                    </p>
-                </section>
-            ) : (
-                <section>
-                    <h1>Log In</h1>
-                    <form onSubmit={handleSubmit}>
+        <section>
+            <h1>Log In</h1>
+            <form onSubmit={handleSubmit}>
 
-                        <label htmlFor="confirm_pwd">
-                            Email:
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                            required
-                        />
+                <label htmlFor="confirm_pwd">
+                    Email:
+                </label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    required
+                />
 
-                        <label htmlFor="password">
-                            Password:
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                        />
+                <label htmlFor="password">
+                    Password:
+                </label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    onChange={(e) => setPwd(e.target.value)}
+                    value={pwd}
+                    required
+                />
 
-                        <button>Sign In</button>
-                    </form>
-                    <p>
-                        Need an Account?<br />
-                        <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign Up</a>
-                        </span>
-                    </p>
-                </section>
-            )}
-        </>
+                <button>Sign In</button>
+            </form>
+            <p>
+                Need an Account?<br />
+                <span className="line">
+                    {/*put router link here*/}
+                    <a href="#">Sign Up</a>
+                </span>
+            </p>
+        </section>
+
     )
 }
 
