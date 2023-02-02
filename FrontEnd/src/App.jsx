@@ -23,16 +23,28 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="linkpage" element={<LinkPage />} />
         <Route path="login" element={<Login />} />
+        <Route path="unauthorized" elemen={<Unauthorized />} />
 
         {/* Private Route */}
-        <Route path="/" element={<Home />} />
-        <Route path="editor" element={<Editor />} />
-        <Route path="admin" element={<Admin />} />
-        <Route path="lounge" element={<Lounge />} />
+        <Route element={<RequireAuth admin />}>
+          <Route path="/" element={<Home />} />
+        </Route>
+
+        <Route element={<RequireAuth admin />}>
+          <Route path="editor" element={<Editor />} />
+        </Route>
+
+        <Route element={<RequireAuth admin />}>
+          <Route path="admin" element={<Admin />} />
+        </Route>
+
+        <Route element={<RequireAuth admin />}>
+          <Route path="lounge" element={<Lounge />} />
+        </Route>
 
         <Route path="*" element={<Missing />} />
       </Route>
-    </Routes>
+    </Routes >
   );
 }
 
