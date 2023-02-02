@@ -2,9 +2,12 @@ import { useEffect } from "react"
 import { useState } from "react"
 import axios from "../api/axios"
 import useAuth from "../hooks/useAuth"
+import useRefreshToken from '../hooks/useRefreshToken'
 
 const User = () => {
     const [text, setText] = useState('')
+    // const refresh = useRefreshToken()
+
     const { auth } = useAuth();
     console.log("auth: ", auth.accessToken)
     const accessToken = auth?.accessToken
@@ -31,6 +34,7 @@ const User = () => {
                 <h2>{text}</h2>
                 : <h2>Nothing to display</h2>
             }
+            {/* <button onClick={() => refresh()}>Refresh</button> */}
         </>
     )
 }
