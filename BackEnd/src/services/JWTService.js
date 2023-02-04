@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 require('dotenv').config()
 
 let generateJWTAccessToken = (data) => {
-    const accessToken = jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "60s" })
+    const accessToken = jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "20s" })
     return accessToken
 }
 

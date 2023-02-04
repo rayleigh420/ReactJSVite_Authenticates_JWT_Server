@@ -6,7 +6,7 @@ import useRefreshToken from '../hooks/useRefreshToken'
 
 const User = () => {
     const [text, setText] = useState('')
-    // const refresh = useRefreshToken()
+    const refresh = useRefreshToken()
 
     const { auth } = useAuth();
     console.log("auth: ", auth.accessToken)
@@ -34,7 +34,7 @@ const User = () => {
                 <h2>{text}</h2>
                 : <h2>Nothing to display</h2>
             }
-            {/* <button onClick={() => refresh()}>Refresh</button> */}
+            <button onClick={() => refresh()}>Refresh</button>
         </>
     )
 }
