@@ -7,7 +7,7 @@ let router = express.Router();
 const authRoute = (app) => {
     router.post('/signUp', authController.signUp)
     router.post('/signIn', authController.signIn)
-    router.post('/refresh', authController.refresh)
+    router.get('/refresh', authController.refresh)
     router.post('/signOut', middlewareController.verifyToken, authController.signOut)
 
     return app.use("/", router);

@@ -27,9 +27,9 @@ const authController = {
             if (userData.status == 200) {
                 res.cookie("refreshToken", userData.user.refreshToken, {
                     httpOnly: true,
-                    secure: false,
+                    secure: true,
                     path: "/",
-                    sameSite: "strict",
+                    sameSite: "None",
                 })
                 res.status(userData.status).json(userData.user)
             }
@@ -53,12 +53,11 @@ const authController = {
             if (result.status == 200) {
                 res.cookie("refreshToken", result.refreshToken, {
                     httpOnly: true,
-                    secure: false,
+                    secure: true,
                     path: "/",
-                    sameSite: "strict",
+                    sameSite: "None",
                 })
                 res.status(result.status).json({ ...result.user, accessToken: result.accessToken, refreshToken: result.refreshToken })
-                res.json("Success")
             }
             else {
                 res.status(result.status).json(result.mess)
