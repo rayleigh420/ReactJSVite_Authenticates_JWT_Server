@@ -26,7 +26,7 @@ const User = () => {
         }
 
         fetch()
-    }, [])
+    }, [auth])
 
     return (
         <>
