@@ -51,12 +51,6 @@ const authController = {
             let result = JWTService.refreshToken(refreshToken)
             console.log(result)
             if (result.status == 200) {
-                res.cookie("refreshToken", result.refreshToken, {
-                    httpOnly: true,
-                    secure: true,
-                    path: "/",
-                    sameSite: "None",
-                })
                 res.status(result.status).json({ ...result.user, accessToken: result.accessToken, refreshToken: result.refreshToken })
             }
             else {

@@ -51,11 +51,11 @@ let refreshToken = (token) => {
         else {
             const { iat, exp, ...info } = user
             const newAccessToken = generateJWTAccessToken(info);
-            const newRefreshToken = generateJWTRefreshToken(info);
+            // const newRefreshToken = generateJWTRefreshToken(info);
             result = {
                 status: 200,
                 accessToken: newAccessToken,
-                refreshToken: newRefreshToken,
+                // refreshToken: newRefreshToken,
                 user: user
             }
         }
