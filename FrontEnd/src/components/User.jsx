@@ -2,11 +2,13 @@ import { useEffect } from "react"
 import { useState } from "react"
 import axios from "../api/axios"
 import useAuth from "../hooks/useAuth"
+import useAxiosPrivate from "../hooks/useAxiosPrivate"
 import useRefreshToken from '../hooks/useRefreshToken'
 
 const User = () => {
     const [text, setText] = useState('')
     const refresh = useRefreshToken()
+    const JWTAxios = useAxiosPrivate();
 
     const { auth } = useAuth();
     console.log("auth: ", auth.accessToken)
@@ -15,7 +17,7 @@ const User = () => {
     useEffect(() => {
         const fetch = async () => {
             try {
-                let result = await axios.get('/action', {
+                let result = await JWTAxios.get('/action', {
                     headers: { token: `Bearer ${accessToken}` }
                 });
                 console.log(result.data)
