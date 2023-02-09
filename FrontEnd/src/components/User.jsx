@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import axios from "../api/axios"
+import { useLocation, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import useAxiosPrivate from "../hooks/useAxiosPrivate"
 import useRefreshToken from '../hooks/useRefreshToken'
@@ -9,6 +9,9 @@ const User = () => {
     const [text, setText] = useState('')
     const refresh = useRefreshToken()
     const JWTAxios = useAxiosPrivate();
+
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const { auth } = useAuth();
     console.log("auth: ", auth.accessToken)
@@ -24,6 +27,7 @@ const User = () => {
                 setText(result.data)
             } catch (e) {
                 console.log(e)
+                navigate('/login', { state: { from: location }, replace: true })
             }
         }
 
