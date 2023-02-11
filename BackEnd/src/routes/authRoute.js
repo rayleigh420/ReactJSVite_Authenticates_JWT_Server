@@ -8,7 +8,7 @@ const authRoute = (app) => {
     router.post('/signUp', authController.signUp)
     router.post('/signIn', authController.signIn)
     router.get('/refresh', authController.refresh)
-    router.post('/signOut', middlewareController.verifyToken, authController.signOut)
+    router.get('/signOut', middlewareController.verifyToken, authController.signOut)
 
     return app.use("/", router);
 };
