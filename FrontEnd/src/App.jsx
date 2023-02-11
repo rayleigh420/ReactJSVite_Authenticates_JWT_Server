@@ -13,6 +13,7 @@ import Unauthorized from './components/Unauthorized';
 import Lounge from './components/Lounge';
 import LinkPage from './components/LinkPage';
 import RequireAuth from './components/RequireAuth';
+import PersistLogin from "./components/PersistLogin";
 
 function App() {
   return (
@@ -26,20 +27,22 @@ function App() {
         <Route path="unauthorized" elemen={<Unauthorized />} />
 
         {/* Private Route */}
-        <Route element={<RequireAuth admin />}>
-          <Route path="/" element={<Home />} />
-        </Route>
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth admin />}>
+            <Route path="/" element={<Home />} />
+          </Route>
 
-        <Route element={<RequireAuth admin />}>
-          <Route path="editor" element={<Editor />} />
-        </Route>
+          <Route element={<RequireAuth admin />}>
+            <Route path="editor" element={<Editor />} />
+          </Route>
 
-        <Route element={<RequireAuth admin />}>
-          <Route path="admin" element={<Admin />} />
-        </Route>
+          <Route element={<RequireAuth admin />}>
+            <Route path="admin" element={<Admin />} />
+          </Route>
 
-        <Route element={<RequireAuth admin />}>
-          <Route path="lounge" element={<Lounge />} />
+          <Route element={<RequireAuth admin />}>
+            <Route path="lounge" element={<Lounge />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<Missing />} />
